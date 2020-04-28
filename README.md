@@ -1,8 +1,8 @@
-<h1 align="center"> 👷🏾‍♂️Drien Language: Implementing a toy compiler</h1>
+<h1 align="center"> 👷🏾‍♂️Implementing a toy compiler from scratch</h1>
 
-[![GitHub stars](https://img.shields.io/github/stars/adriacabeza/drienCompiler?style=social&label=Star&maxAge=2592000)](https://GitHub.com/adriacabeza/drienCompiler/stargazers/)
+[![GitHub stars](https://img.shields.io/github/stars/adriacabeza/compiler-from-scratch?style=social&label=Star&maxAge=2592000)](https://GitHub.com/adriacabeza/compiler-from-scratch/stargazers/)
  
-This is just a toy to learn more about compilers, based on [Compiler Basics](http://www.cs.man.ac.uk/~pjj/farrell/compmain.html) by James Alan Farrell. The idea is to create a simple C-like language that I am gonna call **Drien**.
+This is just a toy to learn more about compilers, based on the [Let's Build a Compiler](https://compilers.iecc.com/crenshaw/tutor1.txt) by by Jack W. Crenshaw and [Compiler Basics](http://www.cs.man.ac.uk/~pjj/farrell/compmain.html) by James Alan Farrell. 
 
 <p align="center"><img src="http://www.cs.man.ac.uk/~pjj/farrell/cmpgif01.gif"/></p>
 
