@@ -8,9 +8,14 @@ This is just a toy to learn more about compilers, based on "Logic Programming an
 ## Front end of the compiler
 ### Lexer
 
-First we have to define the lexical analysis phase of compilation, this process is commonly known as tokenization. So we will be converting the source file characters stream of our language into a Prolog list identifying the token type.  
+First we have to define the lexical analysis phase of compilation, this process is commonly known as tokenization. So we will be converting the source file characters stream of our language into a Prolog list identifying the token type. Note that for that we will be using Prolog **Definite clause grammar**, if you want to know more, here there is a good reference: https://www.metalevel.at/prolog/dcg
 
-You can find it in [**lexer.pl**](lexer.pl)
+You can find it in [**lexer.pl**](lexer.pl). Usage:
+```prolog
+:-lexer.
+:-phrase(tokens(Z),"while a == b do other ; other endwhile")
+[while,a,==,b,do,other,;,other,endwhile].
+```
 
 ### Parser
 
