@@ -1,4 +1,4 @@
-<h1 align="center"> Drien Language: Implementing a toy compiler/h1>
+<h1 align="center"> 👷🏾‍♂️Drien Language: Implementing a toy compiler</h1>
 
 [![GitHub stars](https://img.shields.io/github/stars/adriacabeza/drienCompiler?style=social&label=Star&maxAge=2592000)](https://GitHub.com/adriacabeza/drienCompiler/stargazers/)
  
@@ -8,7 +8,7 @@ This is just a toy to learn more about compilers, based on [Compiler Basics](htt
 
 
 
-### Requirements
+## Requirements
  If you are lazy, you can use the Dockerfile. 
 
 
@@ -27,13 +27,8 @@ You can find it in [**parser**]().
 ## Back end of the compiler
 ### Encoder
 
-The intermediate code that was generated using the parser has to be translated into "von Neumann type" assembly language. 
+The intermediate code that was generated using the parser has to be translated into "von Neumann type" assembly language. You cand find it in [**encoder**]() 
 
-
-```prolog
-:-[encoder].
-:-encoder(FileName).
-```
 ### Assembler 
 
 Finally, we have to assembly the relocatable code into code containing absolute addresses. 
