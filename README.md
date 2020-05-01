@@ -2,34 +2,34 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/adriacabeza/compiler-from-scratch?style=social&label=Star&maxAge=2592000)](https://GitHub.com/adriacabeza/compiler-from-scratch/stargazers/)
  
-This is just a toy to learn more about compilers, based on the [Let's Build a Compiler](https://compilers.iecc.com/crenshaw/tutor1.txt) by by Jack W. Crenshaw and [Compiler Basics](http://www.cs.man.ac.uk/~pjj/farrell/compmain.html) by James Alan Farrell. 
+This is just a toy to learn more about compilers, based on the [Let's Build a Compiler](https://compilers.iecc.com/crenshaw/tutor1.txt) by by Jack W. Crenshaw and [Compiler Basics](http://www.cs.man.ac.uk/~pjj/farrell/compmain.html) by James Alan Farrell. It takes C and compiles it to x86. Note that this is just a toy to learn, not planning to make it very efficent or difficult, just want to make it work.  
 
-<p align="center"><img src="http://www.cs.man.ac.uk/~pjj/farrell/cmpgif01.gif"/></p>
-
-
+[NOT FINISHED THO]
 
 ## Requirements
- If you are lazy, you can use the Dockerfile. 
+Just gcc and a text editor.
+
+## This compiler is capable of
+- Work
+- Deal with numbers and basic arithmetic operations: add, sum, division and multiplication
+- Using the stack in order not to run out of registers. 
 
 
-## Front end of the compiler
-### Lexer
+## Structure
+<p align="center"><img src="http://www.cs.man.ac.uk/~pjj/farrell/cmpgif01.gif"/></p>
+Normally a compiler is separated by different parts:
+- Front end of the compiler
+	- Lexer: it makes the lexical analysis of compilation, this process is commonly known as tokenization. It converts the source file characters stream of our language into a list identifying the token type. 
+	- Parser: it consists in different rules to parse a token stream produced by the lexer to produce intermediate code in the form of a list of abstract syntax trees. This part of the compiler has an understanding of the language's grammar. It is responsible for indentifying syntax errors. This step is very important for the different types of structures that are being created: assignment statments, code blocks, if statements, for loops, goto statements, procedure calls...
 
-First we have to define the lexical analysis phase of compilation, this process is commonly known as tokenization. So we will be converting the source file characters stream of our language into a list identifying the token type. You can find it in [**lexer**]() 
+- Back end of the compiler
+	- Encoder: The intermediate code that was generated using the parser has to be translated into some kind of assembly language. This is done by the encoder.  
+	- Assembler: Finally the assembler relocates code into code containing absolute addresses. 
 
-### Parser
+However, since this is a toy compiler, I'll just keep everything together just like Jack W. Crenshaw does for Turbo Pascal. 
 
-Then we have to define the rules to parse a token stream produced by the lexer to produce intermediate code in the form of a list of abstract syntax trees. This part of the compiler has an understanding of the language's grammar. It is responsible for indentifying syntax errors. Here we will have to take into account different types of structures that we want to create: assignment statments, code blocks, if statements, for loops, goto statements, procedure calls...
+## Usage
+Just use the [Makefile](./Makefile)
 
-You can find it in [**parser**](). 
 
 
-## Back end of the compiler
-### Encoder
-
-The intermediate code that was generated using the parser has to be translated into "von Neumann type" assembly language. You cand find it in [**encoder**]() 
-
-### Assembler 
-
-Finally, we have to assembly the relocatable code into code containing absolute addresses. 
-You cand find it in [**assembler**]() 
