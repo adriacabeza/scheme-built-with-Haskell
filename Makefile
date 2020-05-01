@@ -1,9 +1,14 @@
 IN=main.c cradle.c
 OUT=main
+COMPILED=test.asm
 FLAGS=-Wall -Werror
 
-all:
+compile:
 	gcc -o $(OUT) $(IN) $(FLAGS)
 
 run:
-	./$(OUT)
+	./$(OUT) > $(COMPILED) && chmod +x $(COMPILED)
+
+execute: 
+	nasm -o out.tmp -f macho64
+	 $(COMPILED) && ./out.tmp

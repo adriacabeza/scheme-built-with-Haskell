@@ -15,29 +15,33 @@ void Multiply()
 {
     Match('*');
     Factor();
-    EmitLn("imull (%esp), %eax");
-    /* push of the stack */
-    EmitLn("addl $4, %esp");
+    /* signed multiplication a*b: %(esp)=a and eax=b */
+    EmitLn("imull (%esp), %eax"); 
+    /* push of the stack by modifying the stack pointer register */
+    EmitLn("addl $4, %esp"); 
 } 
 
 void Divide()
 {
     Match('/');
     Factor();
-
-    /* for a expersion like a/b we have eax=b and %(esp)=a
+    /* for a expression like a/b we have eax=b and %(esp)=a
      * but we need eax=a, and b on the stack 
      */
     EmitLn("movl (%esp), %edx");
-    EmitLn("addl $4, %esp");
+    EmitLn("addl $4, %esp"); 
 
-    EmitLn("pushl %eax");
+    EmitLn("pushl %eax"); //we push b on the stack
 
-    EmitLn("movl %edx, %eax");
+    EmitLn("movl %edx, %eax"); // we push a to eax
 
-    /* sign extesnion */
-    EmitLn("sarl $31, %edx");
-    EmitLn("idivl (%esp)");
+    /* 
+     * SAR preserves the sign of the source operand by clearing empty bit positions
+     * if the operand is positive and setting the mpety bits if the operand is 
+     * is negative.
+     */
+    EmitLn("sarl $31, %edx"); 
+    EmitLn("idivl (%esp)"); // signed division: it divides the content of the 64-bit integer EDX:EAX by (%esp)
     EmitLn("addl $4, %esp");
 
 }
@@ -116,7 +120,7 @@ void Add()
     Match('+');
     Term();
     EmitLn("addl (%esp), %eax");
-    EmitLn("addl $4, %esp");  // push of the stack by modifying the stack pointer register
+    EmitLn("addl $4, %esp");  
     
 }
 
@@ -127,7 +131,7 @@ void Substract()
     Term();
     EmitLn("subl (%esp), %eax");
     EmitLn("negl %eax");
-    EmitLn("addl $4, %esp"); // push of the stack by modifying the stack pointer register
+    EmitLn("addl $4, %esp"); 
 }
 
 

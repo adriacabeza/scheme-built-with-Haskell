@@ -94,7 +94,16 @@ void EmitLn(char *s)
     printf("\n");
 }
 
+void EmitSections(char *s)
+{
+    printf("%s", s);
+    printf("\n");
+}
+
 void Init()
 {
+    EmitSections("global start");
+    EmitSections("section .text");
+    EmitSections("start:");
     GetChar();
 }
