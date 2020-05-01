@@ -1,14 +1,17 @@
 IN=main.c cradle.c
 OUT=main
-COMPILED=test.asm
+COMPILED=assembly.s
+EXECUTABLE=out
 FLAGS=-Wall -Werror
+
+all : compile run assemble
 
 compile:
 	gcc -o $(OUT) $(IN) $(FLAGS)
 
 run:
-	./$(OUT) > $(COMPILED) && chmod +x $(COMPILED)
+	./$(OUT) > $(COMPILED)
 
-execute: 
-	nasm -o out.tmp -f macho64
-	 $(COMPILED) && ./out.tmp
+assemble: 
+	gcc -m32 $(COMPILED) -o $(EXECUTABLE) && chmod +x $(EXECUTABLE)
+	 

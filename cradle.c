@@ -96,14 +96,13 @@ void EmitLn(char *s)
 
 void EmitSections(char *s)
 {
-    printf("%s", s);
-    printf("\n");
+   
 }
 
 void Init()
 {
-    EmitSections("global start");
-    EmitSections("section .text");
-    EmitSections("start:");
+    printf("\t%s",".globl _main" );
+    printf("\n");
+    printf("%s","_main:" );
     GetChar();
 }

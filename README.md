@@ -1,10 +1,11 @@
 <h1 align="center"> 👷🏾‍♂️Implementing a toy compiler from scratch</h1>
 
-[![GitHub stars](https://img.shields.io/github/stars/adriacabeza/compiler-from-scratch?style=social&label=Star&maxAge=2592000)](https://GitHub.com/adriacabeza/compiler-from-scratch/stargazers/)
+[![made-with-C](https://img.shields.io/badge/Made%20with-C-1f425f.svg)](http://commonmark.org) [![GitHub stars](https://img.shields.io/github/stars/adriacabeza/compiler-from-scratch?style=social&label=Star&maxAge=2592000)](https://GitHub.com/adriacabeza/compiler-from-scratch/stargazers/)
 
-This is just a toy to learn more about compilers, based on the [Let's Build a Compiler](https://compilers.iecc.com/crenshaw/tutor1.txt) by by Jack W. Crenshaw and [Compiler Basics](http://www.cs.man.ac.uk/~pjj/farrell/compmain.html) by James Alan Farrell. It takes C and compiles it to x86. Note that this is just a toy to learn, not planning to make it very efficent or difficult, just want to make it work.  
 
->[NOT FINISHED THO]
+This is just a toy to learn more about compilers, based on the [Let's Build a Compiler](https://compilers.iecc.com/crenshaw/tutor1.txt) by by Jack W. Crenshaw, who uses Pascal to compile code into 68000. This one takes C and compiles it to x86. Note that this is just a toy to learn, not planning to make it very efficent or difficult, just want to make it work.  
+
+**------> NOT FINISHED THO <-------**
 
 <img src="./docs/arithmetic.png"/>
 
@@ -15,11 +16,27 @@ Just gcc and a text editor.
 
 ## This compiler is capable of
 - Work
-- Deal with numbers and basic arithmetic operations: add, sum, division and multiplication
+- Deal with numbers and basic arithmetic operations: add, sum, division, multiplication and unary minus
 - Using the stack in order not to run out of registers. 
 
 ## Usage
-Just use the [Makefile](./Makefile)
+Use the [Dockerfile](./Dockerfile) and the [Makefile](./Makefile)
+
+## TODO
+- Popping things from the stack
+- Emit a 0 using xor instead of loading it 
+- Deleting stupid stuff:
+	- Adding or substracting  0 
+	- Multiplying or dividing by 1
+
+
+## Basic Backus-Naur Forms
+
+```
+<expression> ::= <term> [<addop> <term>]*
+<term> ::= <factor> [<mulop> <factor>]*
+<factor> ::= number | (expression) | variable
+```
 
 
 ### Note about structure

@@ -41,10 +41,16 @@ void Divide()
      * is negative.
      */
     EmitLn("sarl $31, %edx"); 
-    EmitLn("idivl (%esp)"); // signed division: it divides the content of the 64-bit integer EDX:EAX by (%esp)
+    EmitLn("idivl (%esp)"); // signed division: it divides the content of the eax by (%esp)
     EmitLn("addl $4, %esp");
 
 }
+
+void Variable(){
+
+
+}
+
 
 void Factor()
 {
@@ -60,6 +66,8 @@ void Factor()
         sprintf(tmp,"movl $%c, %%eax", GetNum());
         EmitLn(tmp);
         EmitLn("negl %eax");
+
+    } else if(IsAlpha(Look)){
 
     } else {
 
@@ -92,13 +100,13 @@ void Term()
 void Expression()
 {
     if(IsAddop(Look))
-        EmitLn("xor %eax, %eax"); // this is a way to create a 0 in the register eax
+        EmitLn("xor %eax, %eax"); // this is a way to create a 0 in the register eax, we do it to deal with unary minus
     else
         Term();
 
     while (strchr("+-", Look)) {  // strchr returns a pointer to the occurrences of character +- inside Look 
 
-        EmitLn("pushl %eax"); //push the value of the eax register to the stack
+        EmitLn("pushl %eax"); //push the 0 to the stack so if we have -3 now its 0-3
 
         switch(Look)
         {
