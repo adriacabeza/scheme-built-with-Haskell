@@ -13,7 +13,6 @@ void Factor();
 
 void Multiply()
 {
-    Match('*');
     Factor();
     /* signed multiplication a*b: %(esp)=a and eax=b */
     EmitLn("imull (%esp), %eax"); 
@@ -23,7 +22,6 @@ void Multiply()
 
 void Divide()
 {
-    Match('/');
     Factor();
     /* for a expression like a/b we have eax=b and %(esp)=a
      * but we need eax=a, and b on the stack 
@@ -45,32 +43,36 @@ void Divide()
     EmitLn("addl $4, %esp");
 
 }
-
+/*
 void Variable(){
 
 
+}*/
+
+void Ident(){
+    char name = GetName();
+    if(Look == '('){
+        Match('(');
+        Match(')');
+        sprintf(tmp,"jmp %c", name);
+        EmitLn(tmp);
+    } else{
+        sprintf(tmp,"movl %c, %%eax", name);
+        EmitLn(tmp);
+    }
 }
 
 
 void Factor()
-{
-
+{   
     if(Look == '(') {
-
         Match('(');
         Expression();
         Match(')');
-     } else if(IsAddop(Look)) {
-
-        Match('-');
-        sprintf(tmp,"movl $%c, %%eax", GetNum());
-        EmitLn(tmp);
-        EmitLn("negl %eax");
-
-    } else if(IsAlpha(Look)){
-
-    } else {
-
+     } else if(IsAlpha(Look)){
+         Ident();
+     }
+    else {
         sprintf(tmp,"movl $%c, %%eax", GetNum());
         EmitLn(tmp);
     }
@@ -91,8 +93,6 @@ void Term()
             case '/':
                 Divide();
                 break;
-            default:
-                Expected("Mulop");
         }
     }
 }
@@ -105,7 +105,8 @@ void Expression()
         Term();
 
     while (strchr("+-", Look)) {  // strchr returns a pointer to the occurrences of character +- inside Look 
-
+        sprintf(tmp,"movl $%c, %%eax", GetName());
+        EmitLn(tmp);
         EmitLn("pushl %eax"); //push the 0 to the stack so if we have -3 now its 0-3
 
         switch(Look)
@@ -116,16 +117,21 @@ void Expression()
             case '-':
                 Substract();
                 break;
-            default:
-                Expected("Addop");
         }
     }
 }
 
 
+void Assignment(){
+    Match("=");
+    Expression();
+    EmitLn("movl %eax");
+    EmitLn("pushl %eax")
+}
+
+
 void Add()
 {
-    Match('+');
     Term();
     EmitLn("addl (%esp), %eax");
     EmitLn("addl $4, %esp");  
@@ -135,7 +141,6 @@ void Add()
 
 void Substract()
 {
-    Match('-');
     Term();
     EmitLn("subl (%esp), %eax");
     EmitLn("negl %eax");
@@ -146,6 +151,6 @@ void Substract()
 int main()
 {
     Init();
-    Expression();
+    Assignment();
     return 0;
 }

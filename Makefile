@@ -4,7 +4,7 @@ COMPILED=assembly.s
 EXECUTABLE=out
 FLAGS=-Wall -Werror
 
-all : compile run assemble
+all : compile run 
 
 compile:
 	gcc -o $(OUT) $(IN) $(FLAGS)

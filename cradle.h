@@ -16,6 +16,7 @@ void Match(char x);
 
 int IsAlpha(char c);
 int IsDigit(char c);
+int isAlNum(char c);
 int IsAddop(char c);
 
 char GetName();

@@ -3,7 +3,7 @@
 [![made-with-C](https://img.shields.io/badge/Made%20with-C-1f425f.svg)](http://commonmark.org) [![GitHub stars](https://img.shields.io/github/stars/adriacabeza/compiler-from-scratch?style=social&label=Star&maxAge=2592000)](https://GitHub.com/adriacabeza/compiler-from-scratch/stargazers/)
 
 
-This is just a toy to learn more about compilers, based on the [Let's Build a Compiler](https://compilers.iecc.com/crenshaw/tutor1.txt) by by Jack W. Crenshaw, who uses Pascal to compile code into 68000. This one takes C and compiles it to x86. Note that this is just a toy to learn, not planning to make it very efficent or difficult, just want to make it work.  
+This is just a toy to learn more about compilers, based on the [Let's Build a Compiler](https://compilers.iecc.com/crenshaw/tutor1.txt) by by Jack W. Crenshaw, who uses Pascal to compile code into 68000. This one takes C and compiles it to x86. Note that this is just a toy to learn, not planning to make it very efficent or difficult, just want to make it work. 
 
 **------> NOT FINISHED THO <-------**
 
@@ -15,7 +15,8 @@ This is just a toy to learn more about compilers, based on the [Let's Build a Co
 Just gcc and a text editor.
 
 ## This compiler is capable of
-- Work
+- Deal with variables
+- Call functions (only works if they are just one letter... you know, for simplicity)
 - Deal with numbers and basic arithmetic operations: add, sum, division, multiplication and unary minus
 - Using the stack in order not to run out of registers. 
 
