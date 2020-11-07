@@ -62,12 +62,32 @@ parseFloat = do
            decimal <- many1 digit
            return $ Float (read (whole++"."++decimal) :: Double)
 
-parseExpr :: Parser LispVal
-parseExpr = parseAtom 
-	<|> parseString
-	<|> try parseFloat
-	<|> parseNumber
 
+parseExpr :: Parser LispVal
+parseExpr = parseAtom
+         <|> parseString
+		 <|> parseNumber
+		 <|> parseFloat
+         <|> parseQuoted
+         <|> do char '('
+                x <- try parseList <|> parseDottedList
+                char ')'
+                return x					  
+
+parseList :: Parser LispVal
+parseList = liftM List $ sepBy parseExpr spaces
+
+parseDottedList :: Parser LispVal
+parseDottedList = do
+	head <- endBy parseExpr spaces
+	tail <- char '.' >> spaces >> parseExpr
+	return $ DottedList head tail
+
+parseQuoted :: Parser LispVal
+parseQuoted = do
+    char '\''
+    x <- parseExpr
+    return $ List [Atom "quote", x]
 
 data LispVal = Atom String
 	| List [LispVal]
